@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一笔画 - 创新解谜游戏</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1>一笔画</h1>
+            <div class="level-info">
+                <span id="current-level">关卡 1</span>
+                <span id="level-name">初识一笔</span>
+            </div>
+        </header>
+        
+        <main class="game-main">
+            <div class="game-canvas-container">
+                <canvas id="gameCanvas" width="500" height="400"></canvas>
+                <div id="error-overlay" class="error-overlay hidden">
+                    <div class="error-message">
+                        <h2>操作错误!</h2>
+                        <p id="error-text">请检查连接规则</p>
+                    </div>
+                </div>
+                <div id="win-overlay" class="win-overlay hidden">
+                    <div class="win-message">
+                        <h2>🎉 恭喜通关!</h2>
+                        <p>你成功完成了一笔画!</p>
+                        <button id="next-level-btn" class="btn btn-primary">下一关</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button id="reset-btn" class="btn btn-secondary">
+                    🔄 重置
+                </button>
+                <button id="undo-btn" class="btn btn-secondary">
+                    ↩️ 撤销
+                </button>
+                <button id="level-select-btn" class="btn btn-secondary">
+                    📋 选关
+                </button>
+            </div>
+            
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="info-label">已连接:</span>
+                    <span id="connections-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">剩余节点:</span>
+                    <span id="remaining-nodes">0</span>
+                </div>
+            </div>
+        </main>
+        
+        <div id="level-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>选择关卡</h2>
+                <div id="level-list" class="level-list"></div>
+                <button id="close-modal-btn" class="btn btn-secondary">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/game.js"></script>
+</body>
+</html>
