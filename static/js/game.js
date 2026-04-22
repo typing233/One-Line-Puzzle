@@ -354,7 +354,7 @@ class OneLinePuzzleGame {
     findConnection(from, to, level) {
         for (const conn of level.connections) {
             if ((conn.from === from && conn.to === to) || 
-                (conn.from === to && conn.to === from && conn.type !== 'oneway')) {
+                (conn.from === to && conn.to === from)) {
                 return conn;
             }
         }
