@@ -101,7 +101,7 @@ class OneLinePuzzleGame {
             if (this.currentLevel < this.levels.length) {
                 this.startLevel(this.currentLevel + 1);
             } else {
-                this.showError('恭喜通关所有关卡！');
+                this.showAllLevelsComplete();
             }
         });
     }
@@ -535,6 +535,27 @@ class OneLinePuzzleGame {
         }, 1500);
     }
     
+    showAllLevelsComplete() {
+        this.playSound('success');
+        
+        const winMessage = document.querySelector('#win-overlay .win-message h2');
+        const winText = document.querySelector('#win-overlay .win-message p');
+        const nextBtn = document.getElementById('next-level-btn');
+        
+        winMessage.textContent = '🏆 恭喜通关所有关卡！';
+        winText.textContent = '你已经完成了所有挑战，真是太棒了！';
+        nextBtn.textContent = '重新开始';
+        nextBtn.onclick = () => {
+            document.getElementById('win-overlay').classList.add('hidden');
+            winMessage.textContent = '🎉 恭喜通关!';
+            winText.textContent = '你成功完成了一笔画!';
+            nextBtn.textContent = '下一关';
+            this.startLevel(1);
+        };
+        
+        document.getElementById('win-overlay').classList.remove('hidden');
+    }
+    
     render() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
@@ -574,19 +595,8 @@ class OneLinePuzzleGame {
             
             if (isVisited) continue;
             
-            if (conn.type === 'oneway') {
-                this.ctx.strokeStyle = '#e74c3c';
-                this.ctx.setLineDash([10, 5]);
-            } else if (conn.type === 'repeatable') {
-                this.ctx.strokeStyle = '#f39c12';
-                this.ctx.setLineDash([5, 5]);
-            } else if (conn.type === 'bezier') {
-                this.ctx.strokeStyle = '#3498db';
-                this.ctx.setLineDash([]);
-            } else {
-                this.ctx.strokeStyle = '#bdc3c7';
-                this.ctx.setLineDash([]);
-            }
+            this.ctx.strokeStyle = '#e0e0e0';
+            this.ctx.setLineDash([]);
             
             this.ctx.beginPath();
             
@@ -605,12 +615,12 @@ class OneLinePuzzleGame {
             this.ctx.stroke();
             
             if (conn.type === 'oneway') {
-                this.drawArrow(fromNode, toNode, '#e74c3c');
+                this.drawArrow(fromNode, toNode, '#e0e0e0');
             }
             
             if (conn.type === 'repeatable') {
                 this.ctx.setLineDash([]);
-                this.ctx.fillStyle = '#f39c12';
+                this.ctx.fillStyle = '#9e9e9e';
                 this.ctx.font = 'bold 14px Arial';
                 this.ctx.textAlign = 'center';
                 const midX = (fromNode.x + toNode.x) / 2;
