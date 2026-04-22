@@ -55,7 +55,7 @@ body {
     border: 3px solid #667eea;
     border-radius: 10px;
     background: #fff;
-    cursor: crosshair;
+    cursor: pointer;
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
 }
 
